@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { regEmail } from "../../enums";
+import { mailSlice } from "../../redux/slices/mail";
+import { AppDispatch, useAppDispatch } from "../../redux/store";
 
 function SignUpEmail() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [borderEmail, setBorderEmail] = useState("border-gray-300");
   const [email, setEmail] = useState("");
 
@@ -17,6 +18,7 @@ function SignUpEmail() {
       console.error("Invalid email!");
     } else {
       navigate("./verify-mail");
+      dispatch(mailSlice.actions.setMail(email))
     }
   };
 
