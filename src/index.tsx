@@ -1,19 +1,62 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM, { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App";
+import "./index.css";
+import Login from "./screens/Login";
+import store from "./redux/store";
+import Signup from "./screens/Signup";
+import SignUpEmail from "./components/SignUp/SignUpEmail";
+import Detail from "./components/SignUp/Detail";
+import ProjName from "./components/Setup/ProjName";
+import UploadAvatar from "./components/Setup/UploadAvatar";
+import MembersQuantity from "./components/Setup/MembersQuantity";
+import VerifyMail from "./components/SignUp/VerifyMail";
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/sign-up",
+    element: <Signup />,
+    children: [
+      {
+        index: true,
+        element: <SignUpEmail />,
+      },
+      {
+        path: "/sign-up/verify-mail",
+        element: <VerifyMail />,
+      },
+      {
+        path: "/sign-up/detail",
+        element: <Detail />,
+      },
+      {
+        path: "/sign-up/proj-name",
+        element: <ProjName />,
+      },
+      {
+        path: "/sign-up/avatar",
+        element: <UploadAvatar />,
+      },
+      {
+        path: "/sign-up/members-quantity",
+        element: <MembersQuantity />,
+      },
+    ],
+  },
+]);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+createRoot(document.getElementById("root") as HTMLElement).render(
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+);
