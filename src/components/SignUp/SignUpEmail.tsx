@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { regEmail } from "../../enums";
 
 function SignUpEmail() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [borderEmail, setBorderEmail] = useState("border-gray-300");
   const [email, setEmail] = useState("");
 

@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 function VerifyMail() {
-  const [email, setEmail] = useState(null);
+  const email = useSelector((state: RootState) => state.mailReducer.value)
 
   return (
     <div className="layout-form">
