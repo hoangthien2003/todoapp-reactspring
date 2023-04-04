@@ -24,7 +24,7 @@ body {
     @apply border-none outline-none text-[15px] w-full px-[16px] py-[9px];
   }
   .border-input-form {
-    @apply border-gray-300 border-[2px] rounded-[6px] border-solid hover:cursor-text
+    @apply border-gray-300 border-[1px] rounded-[6px] border-solid hover:cursor-text
     px-[4px] py-[2px];
   }
   .btn {
