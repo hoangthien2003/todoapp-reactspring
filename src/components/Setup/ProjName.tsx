@@ -9,6 +9,7 @@ function ProjName() {
   const validate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!name) setBorderColor("border-red-300");
+    else navigate("../avatar") 
   };
 
   return (
